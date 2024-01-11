@@ -20,15 +20,24 @@ func onLineButtonPressed(child, isPressed: bool):
 	if isPressed:
 		draggedComponent = child
 		draggedComponent.z_index = 1
-	else:
+		draggedComponent.menu_button.mouse_filter = MOUSE_FILTER_IGNORE
+		draggedComponent.mouse_filter = MOUSE_FILTER_IGNORE
+	elif draggedComponent:
+		draggedComponent.menu_button.mouse_filter = MOUSE_FILTER_PASS
+		draggedComponent.mouse_filter = MOUSE_FILTER_PASS
 		draggedComponent.z_index = 0
+		grid_container.queue_sort()
+		print("Set position")
 		draggedComponent = null
 
 func onMouseEnterElement(enteredElement, isMouseEnter: bool):
-	if draggedComponent && isMouseEnter:
-		print("Entered " + enteredElement.name)
+	if draggedComponent && isMouseEnter && draggedComponent != enteredElement:
 		grid_container.move_child(draggedComponent, enteredElement.get_index())
 
 func _input(event):
-	if event is InputEventMouseMotion && draggedComponent:
+	if event is InputEventMouseButton && !event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
+		onLineButtonPressed(draggedComponent, false)
+	elif event is InputEventMouseMotion && draggedComponent:
 		draggedComponent.position.y = get_global_mouse_position().y - draggedComponent.size.y/2
+		print("Dragged")
+	

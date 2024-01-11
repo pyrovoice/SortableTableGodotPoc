@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c64hrxxfcfsgh"]
+[gd_scene load_steps=7 format=3 uid="uid://c64hrxxfcfsgh"]
 
 [ext_resource type="Script" path="res://SkillLine.gd" id="1_re2ed"]
 [ext_resource type="Texture2D" uid="uid://x82uyhk4t3pv" path="res://768px-OOjs_UI_icon_draggable.svg.png" id="2_pienc"]
@@ -10,6 +10,8 @@ bg_color = Color(0.65098, 0.65098, 0.65098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix8xa"]
 bg_color = Color(0.380392, 0.380392, 0.380392, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1w84k"]
 
 [node name="Control" type="ColorRect"]
 custom_minimum_size = Vector2(0, 50)
@@ -27,6 +29,7 @@ mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_dn164")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7maai")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ix8xa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1w84k")
 keep_pressed_outside = true
 
 [node name="TextureRect" type="TextureRect" parent="MenuButton"]
